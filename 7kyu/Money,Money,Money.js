@@ -1,4 +1,6 @@
 /*
+  https://www.codewars.com/kata/money-money-money/train/
+
   Mr. Scrooge has a sum of money 'P' that wants to invest,and he wants to know how many years 'Y'
   this sum has to be kept in the bank in order for this sum of money to amount to 'D'.
 
@@ -31,17 +33,13 @@
   if the Desired Principal 'D' is equal to Principal 'P' this should return 0 Years.
 */
 
-
 function calculateYears(principal, interest, tax, desired, year = 0) {
-  if (principal === desired) return year;
+  if (principal >= desired) return year;
 
   const withInterestApplied = principal * interest;
   const newPrincipal = principal + withInterestApplied - (withInterestApplied * tax);
-  const currentYear = year + 1;
 
-  if (newPrincipal < desired) {
-    return calculateYears(newPrincipal, interest, tax, desired, currentYear)
-  }
-
-  return currentYear;
+  return calculateYears(newPrincipal, interest, tax, desired, year + 1)
 }
+
+// TODO: add not-tail recursion and loop options
